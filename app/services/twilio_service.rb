@@ -6,10 +6,10 @@ class TwilioService
   DEFAULT_FROM = '+441915804320'
 
   def initialize
-    # this needs to go to a ENV var!
-    account_sid = ''
-    auth_token = ''
-    @client = Twilio::REST::Client.new account_sid, auth_token
+    @client = Twilio::REST::Client.new(
+      ENV["TWILIO_ACCOUNT_SID"],
+      ENV["TWILIO_AUTH_TOKEN"]
+    )
   end
 
   def send_sms(to:, message:)
